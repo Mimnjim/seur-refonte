@@ -1,0 +1,28 @@
+:root {
+    --yellow: #FFD400;
+    --red: #E30613;
+
+    --black: #111111;
+    --dark: #1A1A1A;
+
+    --white: #FFFFFF;
+    --gray: #F5F5F5;
+    --gray-dark: #777777;
+
+    --shadow:
+        0 10px 30px rgba(0, 0, 0, .08);
+
+    --radius: 16px;
+
+    --transition: .3s ease;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
