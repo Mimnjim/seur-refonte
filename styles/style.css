@@ -527,17 +527,19 @@ a {
     position: relative;
     max-width: 750px;
     z-index: 2;
+    animation: heroContentReveal .9s ease-out both;
 }
 
 .hero-subtitle {
     color: var(--yellow);
+    font-size: clamp(.8rem, 1.2vw, 1rem);
     font-weight: 600;
     letter-spacing: 2px;
 }
 
 .hero h1 {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(3rem, 6vw, 6rem);
+    font-size: clamp(2.35rem, 5.5vw, 5.25rem);
     font-weight: 800;
 
     line-height: 1.1;
@@ -552,7 +554,7 @@ a {
 }
 
 .hero p {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
     line-height: 1.8;
 
     max-width: 650px;
@@ -574,6 +576,8 @@ a {
 
     padding: 1rem 3rem;
     width: 60%;
+
+    font-size: clamp(.9rem, 1.2vw, 1rem);
 
     border-radius: 50px;
 
@@ -612,7 +616,7 @@ a {
 }
 
 .stat h3 {
-    font-size: 3rem;
+    font-size: clamp(2rem, 4vw, 3rem);
     color: var(--red);
     font-family: 'Montserrat', sans-serif;
 }
@@ -716,7 +720,7 @@ a {
 
 .about-experience strong{
 
-    font-size:3rem;
+    font-size:clamp(2rem, 4vw, 3rem);
 
     line-height:1;
 
@@ -783,7 +787,7 @@ a {
 
 .about-content > p{
 
-    font-size:1.05rem;
+    font-size:clamp(.95rem, 1.3vw, 1.05rem);
 
     line-height:1.9;
 
@@ -852,6 +856,7 @@ a {
     color:var(--red);
 
     font-size:1.2rem;
+    animation: floatIcon 3s ease-in-out infinite;
 }
 
 .feature-card h4{
@@ -860,7 +865,7 @@ a {
 
     color:#111;
 
-    font-size:1.4rem;
+    font-size:clamp(1.05rem, 1.8vw, 1.4rem);
 
     font-weight:700;
 }
@@ -936,17 +941,12 @@ a {
 
     .about-experience strong{
 
-        font-size:2.2rem;
+        font-size:clamp(1.8rem, 7vw, 2.2rem);
     }
 
     .about-experience span{
 
         font-size:.8rem;
-    }
-
-    .about-content h3{
-
-        font-size:2rem;
     }
 
     .about-features{
@@ -1328,9 +1328,6 @@ footer {
         padding: 4rem 5%;
     }
 
-    .hero h1 {
-        font-size: 3rem;
-    }
 }
 
 /* =======================================
@@ -1399,14 +1396,14 @@ footer {
 }
 
 .hero-stat h3{
-    font-size:5rem;
+    font-size:clamp(2.5rem, 6vw, 5rem);
     color:var(--yellow);
     margin-bottom:.25rem;
 }
 
 .hero-stat span{
     color:rgba(255,255,255,.8);
-    font-size:.9rem;
+    font-size:clamp(.75rem, 1.2vw, .9rem);
 }
 
 /* =======================================
@@ -1491,7 +1488,7 @@ footer {
 }
 
 .stat-card h3{
-    font-size:2.5rem;
+    font-size:clamp(2rem, 3.5vw, 2.5rem);
     color:var(--yellow);
 }
 
@@ -1528,7 +1525,7 @@ footer {
 }
 
 .service-number{
-    font-size:2rem;
+    font-size:clamp(1.5rem, 2.5vw, 2rem);
     font-weight:800;
     color:#ddd;
 }
@@ -1683,7 +1680,7 @@ footer {
 
 .catalogue-icon i{
     color:var(--red);
-    font-size:1.8rem;
+    font-size:clamp(1.4rem, 2.5vw, 1.8rem);
 }
 
 /* =======================================
@@ -1884,5 +1881,94 @@ footer {
 
     .trust-bar{
         justify-content:flex-start;
+    }
+}
+
+/* =======================================
+   ANIMATIONS AU DEFILEMENT
+======================================= */
+
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(36px);
+}
+
+.reveal-on-scroll.show {
+    animation: sectionReveal .75s ease-out both;
+}
+
+.reveal-on-scroll.reveal-from-left.show {
+    animation-name: sectionRevealLeft;
+}
+
+.reveal-on-scroll.reveal-from-right.show {
+    animation-name: sectionRevealRight;
+}
+
+.reveal-child {
+    opacity: 0;
+    transform: translateY(24px);
+}
+
+.reveal-child.show {
+    animation: sectionReveal .6s ease-out both;
+    animation-delay: var(--reveal-delay, 0ms);
+}
+
+.service-card,
+.catalogue-card,
+.stat-card,
+.process-step,
+.contact-info,
+.contact-form,
+.portfolio-item {
+    transition: transform .4s ease, box-shadow .4s ease;
+}
+
+.service-card:hover,
+.catalogue-card:hover,
+.stat-card:hover,
+.process-step:hover,
+.contact-info:hover,
+.contact-form:hover,
+.portfolio-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, .13);
+}
+
+.catalogue-icon,
+.service-icon,
+.stat-icon {
+    transition: transform .4s ease;
+}
+
+.catalogue-card:hover .catalogue-icon,
+.service-card:hover .service-icon,
+.stat-card:hover .stat-icon {
+    transform: rotate(-6deg) scale(1.08);
+}
+
+.portfolio-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 35px rgba(0, 0, 0, .2);
+}
+
+.socials a {
+    transition: transform .3s ease, background .3s ease;
+}
+
+.socials a:hover {
+    transform: translateY(-5px) rotate(8deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
     }
 }

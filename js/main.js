@@ -88,14 +88,19 @@ window.addEventListener("scroll", () => {
    ANIMATIONS AU SCROLL
 ========================================= */
 
-const animatedElements = document.querySelectorAll(`
+const animatedSections = document.querySelectorAll(`
+    section:not(.hero),
+    .about-grid
+`);
+
+const animatedChildren = document.querySelectorAll(`
     .section-title,
     .service-card,
     .catalogue-card,
-    .gallery-item,
-    .feature,
-    .step,
-    .stat,
+    .portfolio-item,
+    .feature-card,
+    .process-step,
+    .stat-card,
     .contact-info,
     .contact-form
 `);
@@ -116,10 +121,19 @@ const observer = new IntersectionObserver((entries) => {
     threshold: 0.15
 });
 
-animatedElements.forEach(el => {
+animatedSections.forEach((section, index) => {
 
-    el.classList.add("hidden");
-    observer.observe(el);
+    section.classList.add("reveal-on-scroll");
+    section.classList.add(index % 2 === 0 ? "reveal-from-left" : "reveal-from-right");
+    observer.observe(section);
+
+});
+
+animatedChildren.forEach((element, index) => {
+
+    element.classList.add("reveal-child");
+    element.style.setProperty("--reveal-delay", `${(index % 4) * 90}ms`);
+    observer.observe(element);
 
 });
 
