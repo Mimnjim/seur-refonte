@@ -23,9 +23,10 @@
 }
 
 .page-hero span,
-.page-intro span {
-    color: var(--yellow);
-    font-weight: 700;
+.page-intro span,
+.page-copy span {
+    color: var(--red);
+    font-weight: 600;
     letter-spacing: 2px;
     text-transform: uppercase;
 }
